@@ -29,7 +29,7 @@ export function codeTraceScene({
         </div>
         <div className={styles.trace}>
           <div className={styles.title}>{title}</div>
-          <div className={styles.scroll}>
+          <div className={styles.scroll} tabIndex={0} role="region" aria-label={title}>
             <table className={styles.table}>
               <thead>
                 <tr>

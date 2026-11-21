@@ -20,7 +20,7 @@ export function LearnShell({ sidebar, children }: { sidebar: ReactNode; children
       <aside className={styles.side} id="course-sidebar">
         {sidebar}
       </aside>
-      <div className={styles.content}>
+      <main className={styles.content} id="noi-dung" tabIndex={-1}>
         <Button
           className={styles.menuBtn}
           onClick={() => setOpenOn(open ? null : pathname)}
@@ -31,7 +31,7 @@ export function LearnShell({ sidebar, children }: { sidebar: ReactNode; children
           Danh sách bài
         </Button>
         {children}
-      </div>
+      </main>
     </div>
   );
 }

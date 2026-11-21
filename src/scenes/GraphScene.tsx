@@ -200,7 +200,12 @@ export function graphScene({
             />
           </>
         ) : (
-          <div className={styles.scroll}>
+          <div
+            className={styles.scroll}
+            tabIndex={0}
+            role="region"
+            aria-label="Đồ thị, cuộn ngang được trên màn hình hẹp"
+          >
             <GraphSvg layout={layout} state={frame.state} className={styles.minWide} />
           </div>
         )}

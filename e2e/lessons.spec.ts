@@ -50,7 +50,7 @@ for (const lesson of BUILT_LESSONS) {
       const total = await stepTotal(page);
 
       for (let s = 1; s <= total; s++) {
-        await page.getByRole('button', { name: new RegExp(`^Bước ${s}:`) }).click();
+        await page.getByRole('button', { name: new RegExp(`^Bước ${s}\\s*:`) }).click();
         await expect(page.getByTestId('step-counter')).toHaveText(`BƯỚC ${s} / ${total}`);
         const { count } = await readFrameCounter(page);
         for (let f = count - 1; f >= 0; f--) {
