@@ -3,6 +3,7 @@ import { bigOLesson } from './big-o/lesson';
 import { bstLesson } from './binary-search-tree/lesson';
 import { bfsDfsLesson } from './bfs-dfs/lesson';
 import { binarySearchLesson } from './binary-search/lesson';
+import { btreeLesson } from './b-tree/lesson';
 import { hashTableLesson } from './hash-table/lesson';
 import { heapLesson } from './heap/lesson';
 import { mergeSortLesson } from './merge-sort/lesson';
@@ -20,6 +21,7 @@ export const LESSONS: Record<string, Lesson> = {
   [mergeSortLesson.slug]: mergeSortLesson,
   [heapLesson.slug]: heapLesson,
   [bstLesson.slug]: bstLesson,
+  [btreeLesson.slug]: btreeLesson,
   [bfsDfsLesson.slug]: bfsDfsLesson,
   [topologicalSortLesson.slug]: topologicalSortLesson,
 };
