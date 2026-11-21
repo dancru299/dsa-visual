@@ -66,7 +66,16 @@ export const COURSE: ModuleMeta[] = [
           'Cấu trúc vào sau, ra trước. Dùng để kiểm tra ngoặc, và chính là cách Python theo dõi các lời gọi hàm.',
         prerequisites: ['Python: list, append() và pop()', 'Hàm gọi hàm khác và return'],
       },
-      { slug: 'queue', title: 'Queue và ring buffer', built: false },
+      {
+        slug: 'queue',
+        title: 'Queue và ring buffer',
+        built: true,
+        minutes: 7,
+        level: 'Cơ bản',
+        summary:
+          'Hàng đợi vào trước ra trước, vì sao list.pop(0) chậm, và ring buffer: bộ đệm cố định giữa producer với consumer, kèm backpressure khi đầy.',
+        prerequisites: ['Python: list, append() và pop()', 'Bài Stack: push và pop'],
+      },
     ],
   },
   {
