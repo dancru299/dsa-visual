@@ -127,7 +127,16 @@ export const COURSE: ModuleMeta[] = [
           'Một cái cây nằm gọn trong list: luôn biết ngay số nhỏ nhất, push và pop O(log n). Dùng để lấy Top-K trên dòng dữ liệu và trộn k file đã sort.',
         prerequisites: ['Python: list và index', 'Bài Big-O và bài Merge sort'],
       },
-      { slug: 'binary-search-tree', title: 'Binary Search Tree', built: false },
+      {
+        slug: 'binary-search-tree',
+        title: 'Binary Search Tree',
+        built: true,
+        minutes: 8,
+        level: 'Cơ bản',
+        summary:
+          'Cây mà mỗi node chia khoá thành bên nhỏ hơn và bên lớn hơn: tìm, chèn, duyệt theo thứ tự, truy vấn khoảng, và vì sao dữ liệu đến đã sort làm cây thành một chuỗi.',
+        prerequisites: ['Bài Binary Search', 'Python: class, None và hàm đệ quy'],
+      },
       { slug: 'b-tree', title: 'B-tree', built: false },
     ],
   },

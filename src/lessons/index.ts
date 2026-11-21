@@ -1,5 +1,6 @@
 import type { Lesson } from '@/src/engine/types';
 import { bigOLesson } from './big-o/lesson';
+import { bstLesson } from './binary-search-tree/lesson';
 import { bfsDfsLesson } from './bfs-dfs/lesson';
 import { binarySearchLesson } from './binary-search/lesson';
 import { hashTableLesson } from './hash-table/lesson';
@@ -18,6 +19,7 @@ export const LESSONS: Record<string, Lesson> = {
   [hashTableLesson.slug]: hashTableLesson,
   [mergeSortLesson.slug]: mergeSortLesson,
   [heapLesson.slug]: heapLesson,
+  [bstLesson.slug]: bstLesson,
   [bfsDfsLesson.slug]: bfsDfsLesson,
   [topologicalSortLesson.slug]: topologicalSortLesson,
 };
