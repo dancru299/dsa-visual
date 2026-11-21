@@ -85,7 +85,12 @@ export function trackScene({ pointers, chart, gait }: Options): SceneComponent<T
           <ComplexityChart highlight={chart} />
         </div>
 
-        <div className={styles.scroll}>
+        <div
+          className={styles.scroll}
+          tabIndex={0}
+          role="region"
+          aria-label="Dãy số, cuộn ngang được trên màn hình hẹp"
+        >
           <div className={styles.track}>
             <div className={styles.row}>
               <div className={styles.slab} />

@@ -30,10 +30,13 @@ export function Stepper({ labels, current, onSelect }: Props) {
                 type="button"
                 className={cx(styles.item, i < current && styles.done, i === current && styles.cur)}
                 onClick={() => onSelect(i)}
-                aria-label={`Bước ${i + 1}: ${label}`}
                 aria-current={i === current ? 'step' : undefined}
               >
+                {/* Tên của nút lấy từ chính chữ hiển thị, thêm chữ "Bước" chỉ cho trình đọc
+                    màn hình, nên tên nút luôn chứa đúng chữ người dùng nhìn thấy (WCAG 2.5.3). */}
+                <span className={styles.srOnly}>Bước </span>
                 <span className={styles.dot}>{i + 1}</span>
+                <span className={styles.srOnly}>: </span>
                 <span className={styles.label}>{label}</span>
               </button>
             ))}

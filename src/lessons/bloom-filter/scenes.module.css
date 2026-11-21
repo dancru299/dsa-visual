@@ -167,7 +167,7 @@
 }
 
 .note.noteBad {
-  color: var(--rose-s);
+  color: var(--bad);
 }
 
 /* ---------- row group ---------- */
@@ -196,7 +196,8 @@
 }
 
 .group.skipped {
-  opacity: 0.55;
+  color: var(--muted);
+  background: transparent;
   border-style: dashed;
 }
 

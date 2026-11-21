@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { Ask } from '@/src/engine/types';
 import { choiceOrder } from '@/src/lib/choiceOrder';
 import { cx } from '@/src/lib/cx';
@@ -13,6 +13,13 @@ export function AskCard({ ask, onContinue }: { ask: Ask; onContinue: () => void 
   const shown = useMemo(() => choiceOrder(ask), [ask]);
   const id = useId();
   const answered = picked !== null;
+  const choices = useRef<HTMLDivElement>(null);
+
+  // Câu đoán hiện ra khi player dừng: đưa focus tới lựa chọn đầu tiên, để người dùng bàn phím
+  // và trình đọc màn hình đi thẳng vào câu hỏi thay vì phải Tab tìm.
+  useEffect(() => {
+    choices.current?.querySelector('button')?.focus();
+  }, []);
 
   return (
     <div className={styles.ask} role="group" aria-labelledby={id} data-testid="ask-card">
@@ -23,7 +30,7 @@ export function AskCard({ ask, onContinue }: { ask: Ask; onContinue: () => void 
       <p id={id} className={styles.prompt}>
         {ask.prompt}
       </p>
-      <div className={styles.choices}>
+      <div className={styles.choices} ref={choices}>
         {shown.map((i) => (
           <button
             key={i}

@@ -144,8 +144,6 @@
   text-align: right;
   border-bottom: 1px dashed var(--line);
   white-space: nowrap;
-  opacity: 0.15;
-  transition: opacity 0.3s;
 }
 
 .table th:first-child,
@@ -153,8 +151,14 @@
   text-align: left;
 }
 
-.table tr.shown td {
-  opacity: 1;
+/* Hàng chưa tới lượt: chỉ hiện cột đầu, các ô giá trị ẩn hẳn. Làm mờ thì vừa khó đọc
+   (không đủ tương phản), vừa lộ đáp án của câu đoán; ẩn thì trình đọc màn hình cũng bỏ qua. */
+.table tr:not(.shown) td:not(:first-child) {
+  visibility: hidden;
+}
+
+.table tr:not(.shown) td:first-child {
+  color: var(--muted);
 }
 
 .table tr.latest td {
@@ -172,7 +176,7 @@
 }
 
 .warn {
-  color: #b4601a;
+  color: #8f4c12;
   font-weight: 700;
 }
 

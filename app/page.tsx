@@ -7,7 +7,7 @@ export default function Home() {
   const first = BUILT_LESSONS[0];
   const total = COURSE.reduce((n, m) => n + m.lessons.length, 0);
   return (
-    <main className={styles.main}>
+    <main className={styles.main} id="noi-dung" tabIndex={-1}>
       <h1 className={styles.title}>
         DSA <span className={styles.highlight}>Visual</span>
       </h1>

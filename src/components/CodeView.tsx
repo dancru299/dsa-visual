@@ -73,7 +73,8 @@ export function CodeView({ file, lines, highlight = [] }: Props) {
         <i className={styles.dot} />
         <span className={styles.file}>{file}</span>
       </div>
-      <pre className={styles.pre}>
+      {/* Dòng dài thì cuộn ngang; tabIndex để cuộn được bằng bàn phím (WCAG 2.1.1). */}
+      <pre className={styles.pre} tabIndex={0} aria-label={`Code ${file}`}>
         {lines.map((line, i) => (
           <span
             key={i}

@@ -20,6 +20,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html lang="vi" className={mono.variable}>
       <body>
+        <a href="#noi-dung" className="skip-link">
+          Bỏ qua tới nội dung
+        </a>
         <TopBar />
         {children}
       </body>
