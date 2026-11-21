@@ -99,7 +99,18 @@ export const COURSE: ModuleMeta[] = [
     id: 'sap-xep',
     name: '04. Sắp xếp',
     color: '#f7c696',
-    lessons: [{ slug: 'merge-sort', title: 'Merge sort', built: false }],
+    lessons: [
+      {
+        slug: 'merge-sort',
+        title: 'Merge sort',
+        built: true,
+        minutes: 8,
+        level: 'Cơ bản',
+        summary:
+          'Chia đôi tới khi còn 1 phần tử rồi trộn lại: O(n log n). Cùng ý tưởng trộn đó là sort-merge join và external sort.',
+        prerequisites: ['Python: list, slicing, vòng lặp while', 'Bài Big-O và bài Binary Search'],
+      },
+    ],
   },
   {
     id: 'cay',

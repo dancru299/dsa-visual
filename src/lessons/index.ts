@@ -2,6 +2,7 @@ import type { Lesson } from '@/src/engine/types';
 import { bigOLesson } from './big-o/lesson';
 import { binarySearchLesson } from './binary-search/lesson';
 import { hashTableLesson } from './hash-table/lesson';
+import { mergeSortLesson } from './merge-sort/lesson';
 import { queueLesson } from './queue/lesson';
 import { stackLesson } from './stack/lesson';
 
@@ -12,4 +13,5 @@ export const LESSONS: Record<string, Lesson> = {
   [stackLesson.slug]: stackLesson,
   [queueLesson.slug]: queueLesson,
   [hashTableLesson.slug]: hashTableLesson,
+  [mergeSortLesson.slug]: mergeSortLesson,
 };
