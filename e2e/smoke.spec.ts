@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
+import { BUILT_LESSONS, lessonHref } from '../src/lessons/catalog';
 import { collectErrors } from './helpers';
 
 test('trang chủ mở được, có link vào bài đầu tiên, không lỗi console', async ({ page }) => {
   const errors = collectErrors(page);
+  const first = BUILT_LESSONS[0];
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('DSA Visual');
-  await page.getByRole('link', { name: /Bắt đầu với Binary Search/ }).click();
-  await expect(page).toHaveURL(/\/learn\/binary-search/);
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Binary Search');
+  await page.getByRole('link', { name: `Bắt đầu với ${first.title}` }).click();
+  await expect(page).toHaveURL(new RegExp(`${lessonHref(first.slug)}$`));
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(first.title);
   expect(errors).toEqual([]);
 });
 

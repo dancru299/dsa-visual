@@ -18,7 +18,18 @@ export const COURSE: ModuleMeta[] = [
     id: 'nen-tang',
     name: '00. Nền tảng',
     color: '#f7c696',
-    lessons: [{ slug: 'big-o', title: 'Big-O qua chi phí đọc dữ liệu', built: false }],
+    lessons: [
+      {
+        slug: 'big-o',
+        title: 'Big-O qua chi phí đọc dữ liệu',
+        built: true,
+        minutes: 5,
+        level: 'Nhập môn',
+        summary:
+          'Big-O đếm số bước khi bảng lớn dần: vì sao full scan chậm dần, tra index chỉ thêm vài bước, còn JOIN so mọi cặp thì không chạy nổi.',
+        prerequisites: ['Python: list và index', 'SQL: SELECT … WHERE và JOIN'],
+      },
+    ],
   },
   {
     id: 'tim-kiem',
