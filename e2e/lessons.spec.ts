@@ -4,7 +4,12 @@ import { collectErrors, readFrameCounter, seek, stepTotal } from './helpers';
 
 for (const lesson of BUILT_LESSONS) {
   test.describe(`bài ${lesson.title}`, () => {
+    // Chạy ở chế độ giảm chuyển động: vừa kiểm tra bài vẫn học được khi tắt hiệu ứng (một mục
+    // trong checklist review), vừa để nút không nảy khiến mỗi lần bấm phải chờ. Bấm qua từng frame
+    // của cả bài nên cần nhiều thời gian hơn mức 30 giây mặc định.
     test('đi hết mọi bước và trả lời mọi câu đoán mà không lỗi', async ({ page }) => {
+      test.setTimeout(90_000);
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       const errors = collectErrors(page);
       await page.goto(lessonHref(lesson.slug));
       await expect(page.getByRole('heading', { level: 1 })).toHaveText(lesson.title);
