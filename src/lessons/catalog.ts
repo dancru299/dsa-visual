@@ -82,7 +82,18 @@ export const COURSE: ModuleMeta[] = [
     id: 'hashing',
     name: '03. Hashing',
     color: '#f4b8b0',
-    lessons: [{ slug: 'hash-table', title: 'Hash table', built: false }],
+    lessons: [
+      {
+        slug: 'hash-table',
+        title: 'Hash table',
+        built: true,
+        minutes: 8,
+        level: 'Cơ bản',
+        summary:
+          'Hàm hash biến key thành số ngăn để tra cứu O(1). Va chạm, resize, và cách GROUP BY, hash join, data skew đều đi ra từ đây.',
+        prerequisites: ['Python: dict, vòng lặp for', 'Bài Big-O: O(1), O(n), O(n²)'],
+      },
+    ],
   },
   {
     id: 'sap-xep',
