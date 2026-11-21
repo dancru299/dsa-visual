@@ -14,7 +14,8 @@ export type GraphLayout = {
   width: number;
   height: number;
   nodes: { id: string; label: string; x: number; y: number }[]; // x, y là tâm của node
-  edges: { from: string; to: string }[];
+  // path: tự vẽ cạnh khi cách nối mặc định không hợp, ví dụ cạnh đi ngược chiều tạo thành vòng.
+  edges: { from: string; to: string; path?: string }[];
   flow?: 'right' | 'down'; // cạnh đi từ trái sang phải (mặc định) hay từ trên xuống
   nodeWidth?: number;
   nodeHeight?: number;
@@ -32,7 +33,10 @@ export type GraphSceneState = {
 
 type Options = {
   layout: GraphLayout;
-  narrow?: GraphLayout; // bố cục dọc cho khung hẹp hơn 480px; không có thì kéo ngang
+  narrow?: GraphLayout; // bố cục dọc cho khung hẹp; không có thì kéo ngang
+  // Khung hẹp hơn mức này thì dùng bố cục dọc. Bố cục ngang càng rộng thì càng phải đổi sớm,
+  // để chữ không bị thu nhỏ quá 80%.
+  narrowBelow?: 480 | 720;
   pendingTitle: string; // ví dụ "QUEUE (ĐẦU BÊN TRÁI)"
   orderTitle: string;
   code?: { file: string; lines: readonly string[] };
@@ -109,14 +113,14 @@ function GraphSvg({
         ))}
       </defs>
 
-      {layout.edges.map(({ from, to }) => {
+      {layout.edges.map(({ from, to, path }) => {
         const k = key(from, to);
         const isActive = activeEdge === k;
         const isTree = treeEdges.includes(k);
         return (
           <path
             key={k}
-            d={edgePath(from, to)}
+            d={path ?? edgePath(from, to)}
             className={cx(styles.edge, isTree && styles.tree, isActive && styles.active)}
             markerEnd={`url(#${isTree || isActive ? arrowDark : arrowIdle})`}
           />
@@ -171,6 +175,7 @@ function GraphSvg({
 export function graphScene({
   layout,
   narrow,
+  narrowBelow = 480,
   pendingTitle,
   orderTitle,
   code,
@@ -183,8 +188,16 @@ export function graphScene({
           // Vẽ cả hai bố cục, CSS container query chọn cái hợp với bề ngang khung. Không đo bằng
           // JavaScript nên HTML từ server và lần render đầu trên trình duyệt luôn giống nhau.
           <>
-            <GraphSvg layout={layout} state={frame.state} className={styles.wideOnly} />
-            <GraphSvg layout={narrow} state={frame.state} className={styles.narrowOnly} />
+            <GraphSvg
+              layout={layout}
+              state={frame.state}
+              className={narrowBelow === 720 ? styles.wideOnlyLg : styles.wideOnly}
+            />
+            <GraphSvg
+              layout={narrow}
+              state={frame.state}
+              className={narrowBelow === 720 ? styles.narrowOnlyLg : styles.narrowOnly}
+            />
           </>
         ) : (
           <div className={styles.scroll}>
