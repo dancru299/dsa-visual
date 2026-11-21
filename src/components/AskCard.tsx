@@ -2,24 +2,15 @@
 
 import { useId, useMemo, useState } from 'react';
 import type { Ask } from '@/src/engine/types';
+import { choiceOrder } from '@/src/lib/choiceOrder';
 import { cx } from '@/src/lib/cx';
 import { Button } from './Button';
 import { Icon } from './Icon';
 import styles from './AskCard.module.css';
 
-// Xáo thứ tự đáp án nhưng cố định theo nội dung câu hỏi, để lần render nào cũng giống nhau
-// và đáp án đúng không luôn nằm ở cùng một chỗ.
-function order(ask: Ask): number[] {
-  const hash = (s: string) => [...s].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7);
-  return ask.choices
-    .map((c, i) => ({ i, h: hash(ask.prompt + '|' + c) }))
-    .sort((a, b) => a.h - b.h)
-    .map((x) => x.i);
-}
-
 export function AskCard({ ask, onContinue }: { ask: Ask; onContinue: () => void }) {
   const [picked, setPicked] = useState<number | null>(null);
-  const shown = useMemo(() => order(ask), [ask]);
+  const shown = useMemo(() => choiceOrder(ask), [ask]);
   const id = useId();
   const answered = picked !== null;
 

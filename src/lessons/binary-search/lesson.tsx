@@ -15,6 +15,7 @@ import {
 } from './algorithm';
 import { HalvingScene } from './HalvingScene';
 import { trackScene } from './TrackScene';
+import { QUIZ } from './quiz';
 
 export const ARR = [3, 8, 12, 17, 21, 26, 34, 41, 47, 55, 62, 66, 73, 80, 88, 95];
 export const TARGET = 73;
@@ -626,4 +627,5 @@ export const binarySearchLesson: Lesson = {
     { text: 'Xử lý trường hợp không tìm thấy', step: 5 },
     { text: 'Giải thích O(log n) bằng phép chia đôi', step: 6 },
   ],
+  quiz: QUIZ,
 };

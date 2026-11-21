@@ -9,6 +9,7 @@ import {
   type StackState,
 } from './algorithm';
 import { stackScene } from './StackScene';
+import { QUIZ } from './quiz';
 
 // ---------- Code hiển thị trên trang ----------
 
@@ -503,4 +504,5 @@ export const stackLesson: Lesson = {
     { text: 'Nhận ra các trường hợp ngoặc sai', step: 4 },
     { text: 'Hiểu call stack và RecursionError', step: 5 },
   ],
+  quiz: QUIZ,
 };

@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) 348px;
   gap: 14px;
-  padding: 16px 18px 24px;
+  padding: 16px 18px 14px;
   align-items: start;
 }
 
@@ -154,5 +154,15 @@
 
   .title {
     font-size: 23px;
+  }
+}
+
+.quizWrap {
+  padding: 0 18px 24px;
+}
+
+@media (max-width: 900px) {
+  .quizWrap {
+    padding: 0 12px 12px;
   }
 }

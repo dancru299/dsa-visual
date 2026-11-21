@@ -58,6 +58,10 @@ export type Step<S, E = unknown> = {
   build: () => Frame<S, E>[]; // đoạn frame của bước này
 };
 
+// Câu hỏi cuối bài: làm sau khi học xong, không có hình gợi ý. step là chỉ số của bước nên xem
+// lại khi trả lời sai; code là đoạn code đi kèm câu hỏi, nếu có.
+export type QuizQuestion = Ask & { step: number; code?: readonly string[] };
+
 export type LegendItem = { swatch: Swatch; label: string } | { dashed: true; label: string };
 
 // Phần nội dung chạy trên trình duyệt của một bài. Tên, thời lượng, phần cần biết trước...
@@ -70,6 +74,7 @@ export type Lesson = {
   legend: LegendItem[];
   // step: chỉ số của bước mà khi đã xem tới thì coi như học xong mục này.
   objectives: { text: string; step: number }[];
+  quiz: QuizQuestion[]; // ít nhất 3 câu
 };
 
 export const defineStep = <S, E>(step: Step<S, E>) => step;

@@ -13,6 +13,7 @@ import {
   type TopoEvent,
   type TopoState,
 } from './algorithm';
+import { QUIZ } from './quiz';
 
 // ---------- Dữ liệu ----------
 
@@ -769,4 +770,5 @@ export const topologicalSortLesson: Lesson = {
     { text: 'Phát hiện vòng trong DAG', step: 3 },
     { text: 'Xếp thứ tự bằng DFS', step: 4 },
   ],
+  quiz: QUIZ,
 };

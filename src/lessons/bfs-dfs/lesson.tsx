@@ -12,6 +12,7 @@ import {
   type WalkEvent,
   type WalkState,
 } from './algorithm';
+import { QUIZ } from './quiz';
 
 // ---------- Dữ liệu ----------
 
@@ -821,4 +822,5 @@ export const bfsDfsLesson: Lesson = {
     { text: 'Hiểu vì sao cần tập seen', step: 3 },
     { text: 'Giới hạn số bước như dbt +n', step: 4 },
   ],
+  quiz: QUIZ,
 };

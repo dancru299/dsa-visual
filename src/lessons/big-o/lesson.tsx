@@ -23,6 +23,7 @@ import {
   type ReadEvent,
 } from './algorithm';
 import { GrowthScene, JoinScene } from './scenes';
+import { QUIZ } from './quiz';
 
 const N = ARR.length;
 export const INDEX = 12; // vị trí đọc thẳng ở bước 1
@@ -381,4 +382,5 @@ export const bigOLesson: Lesson = {
     { text: 'Thấy vì sao O(n²) nguy hiểm với bảng lớn', step: 3 },
     { text: 'So sánh tốc độ tăng khi n lên tới 1 tỷ', step: 4 },
   ],
+  quiz: QUIZ,
 };

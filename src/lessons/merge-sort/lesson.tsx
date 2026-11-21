@@ -16,6 +16,7 @@ import {
   type SplitEvent,
 } from './algorithm';
 import { approx, CostScene, joinScene, treeScene } from './scenes';
+import { QUIZ } from './quiz';
 
 // ---------- Code hiển thị trên trang ----------
 
@@ -541,4 +542,5 @@ export const mergeSortLesson: Lesson = {
     { text: 'Giải thích O(n log n)', step: 3 },
     { text: 'Nối merge sort với sort-merge join', step: 4 },
   ],
+  quiz: QUIZ,
 };

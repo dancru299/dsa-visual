@@ -1,15 +1,16 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { feedbackUrl } from '@/src/config';
-import { askKey, recordAnswer, useAnswered } from '@/src/engine/progress';
+import { askKey, recordAnswer, recordQuiz, useAnswered, useQuizScore } from '@/src/engine/progress';
 import type { Frame } from '@/src/engine/types';
 import { useHashStep } from '@/src/engine/useHashStep';
 import { lessonHref, nextBuiltLesson, type LessonEntry } from '@/src/lessons/catalog';
 import { LESSONS } from '@/src/lessons';
 import { cx } from '@/src/lib/cx';
 import { Icon } from './Icon';
+import { Quiz } from './Quiz';
 import { Objectives, StepCard } from './StepCard';
 import { StepPlayer } from './StepPlayer';
 import { Stepper } from './Stepper';
@@ -27,6 +28,8 @@ export function LessonView({ meta }: { meta: LessonEntry }) {
   const [maxSeen, setMaxSeen] = useState(0);
   const [speed, setSpeed] = useState(1);
   const answered = useAnswered(meta.slug);
+  const quizScore = useQuizScore(meta.slug);
+  const lessonRef = useRef<HTMLElement>(null);
 
   // Trace của mọi bước tính một lần khi mở bài. Mỗi bước chỉ vài chục frame nên rất nhẹ.
   const frames = useMemo(() => steps.map((s) => s.build() as Frame<unknown>[]), [steps]);
@@ -57,6 +60,11 @@ export function LessonView({ meta }: { meta: LessonEntry }) {
     else goTo(0);
   };
   const goBack = () => goTo(index - 1);
+  // Từ quiz quay lại một bước: mở bước đó rồi cuộn lên đầu phần bài học.
+  const review = (i: number) => {
+    goTo(i);
+    lessonRef.current?.scrollIntoView({ block: 'start' });
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -74,81 +82,108 @@ export function LessonView({ meta }: { meta: LessonEntry }) {
   });
 
   return (
-    <div className={styles.layout}>
-      <div className={styles.main}>
-        <section className={styles.lesson}>
-          <header className={styles.lh}>
-            <div>
-              <div className={styles.crumb}>
-                {meta.module.name} &nbsp;/&nbsp;{' '}
-                <b>
-                  Bài {meta.position} trong {meta.moduleSize}
-                </b>
+    <>
+      <div className={styles.layout}>
+        <div className={styles.main}>
+          <section className={styles.lesson} ref={lessonRef}>
+            <header className={styles.lh}>
+              <div>
+                <div className={styles.crumb}>
+                  {meta.module.name} &nbsp;/&nbsp;{' '}
+                  <b>
+                    Bài {meta.position} trong {meta.moduleSize}
+                  </b>
+                </div>
+                <h1 className={styles.title}>{meta.title}</h1>
+                <p className={styles.summary}>{meta.summary}</p>
               </div>
-              <h1 className={styles.title}>{meta.title}</h1>
-              <p className={styles.summary}>{meta.summary}</p>
-            </div>
-            <div className={styles.chips}>
-              <span className={cx(styles.chip, styles.c1)}>
-                <Icon name="clock" size={13} />
-                {meta.minutes} phút
-              </span>
-              <span className={cx(styles.chip, styles.c2)}>
-                <Icon name="bars" size={13} />
-                {meta.level}
-              </span>
-              <span className={cx(styles.chip, styles.c3)}>
-                <Icon name="list" size={13} />
-                {steps.length} bước
-              </span>
-              <span
-                className={cx(styles.chip, finished ? styles.done : styles.c4)}
-                data-testid="progress-chip"
-              >
-                <Icon name={finished ? 'check' : 'help'} size={13} />
-                {finished ? 'Đã xong bài' : `Câu đoán ${answeredCount}/${askKeys.length}`}
-              </span>
-            </div>
-          </header>
+              <div className={styles.chips}>
+                <span className={cx(styles.chip, styles.c1)}>
+                  <Icon name="clock" size={13} />
+                  {meta.minutes} phút
+                </span>
+                <span className={cx(styles.chip, styles.c2)}>
+                  <Icon name="bars" size={13} />
+                  {meta.level}
+                </span>
+                <span className={cx(styles.chip, styles.c3)}>
+                  <Icon name="list" size={13} />
+                  {steps.length} bước
+                </span>
+                <span
+                  className={cx(styles.chip, finished ? styles.done : styles.c4)}
+                  data-testid="progress-chip"
+                >
+                  <Icon name={finished ? 'check' : 'help'} size={13} />
+                  {finished ? 'Đã xong bài' : `Câu đoán ${answeredCount}/${askKeys.length}`}
+                </span>
+                {quizScore && (
+                  <span
+                    className={cx(
+                      styles.chip,
+                      quizScore.best === quizScore.total ? styles.done : styles.c1,
+                    )}
+                    data-testid="quiz-chip"
+                  >
+                    <Icon name="check" size={13} />
+                    Quiz {quizScore.best}/{quizScore.total}
+                  </span>
+                )}
+              </div>
+            </header>
 
-          {meta.prerequisites && meta.prerequisites.length > 0 && (
-            <div className={styles.prereq}>
-              <b>CẦN BIẾT TRƯỚC</b>
-              <ul>
-                {meta.prerequisites.map((p) => (
-                  <li key={p}>{p}</li>
-                ))}
-              </ul>
-            </div>
-          )}
+            {meta.prerequisites && meta.prerequisites.length > 0 && (
+              <div className={styles.prereq}>
+                <b>CẦN BIẾT TRƯỚC</b>
+                <ul>
+                  {meta.prerequisites.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
-          <StepPlayer
-            key={step.id}
+            <StepPlayer
+              key={step.id}
+              step={step}
+              frames={frames[index]}
+              legend={lesson.legend}
+              speed={speed}
+              onSpeed={setSpeed}
+              onAnswer={(f) => recordAnswer(meta.slug, askKey(step.id, f))}
+            />
+          </section>
+
+          <Stepper labels={steps.map((s) => s.short)} current={index} onSelect={goTo} />
+        </div>
+
+        <aside className={styles.panel} aria-label="Giải thích">
+          <StepCard
             step={step}
+            index={index}
+            total={steps.length}
             frames={frames[index]}
-            legend={lesson.legend}
-            speed={speed}
-            onSpeed={setSpeed}
-            onAnswer={(f) => recordAnswer(meta.slug, askKey(step.id, f))}
+            nextLabel={nextLabel}
+            onBack={goBack}
+            onNext={goNext}
+            feedbackHref={feedbackUrl(meta.title)}
           />
-        </section>
-
-        <Stepper labels={steps.map((s) => s.short)} current={index} onSelect={goTo} />
+          <Objectives items={lesson.objectives} reached={Math.max(maxSeen, index)} />
+        </aside>
       </div>
 
-      <aside className={styles.panel} aria-label="Giải thích">
-        <StepCard
-          step={step}
-          index={index}
-          total={steps.length}
-          frames={frames[index]}
-          nextLabel={nextLabel}
-          onBack={goBack}
-          onNext={goNext}
-          feedbackHref={feedbackUrl(meta.title)}
+      {/* Quiz nằm ngoài lưới hai cột: panel bên phải dính (sticky) trong phạm vi lưới, nếu quiz
+          ở trong lưới thì panel sẽ trượt xuống đè lên quiz. */}
+      <div className={styles.quizWrap}>
+        <Quiz
+          key={meta.slug}
+          questions={lesson.quiz}
+          stepLabels={steps.map((s) => s.short)}
+          saved={quizScore}
+          onFinish={(score) => recordQuiz(meta.slug, score, lesson.quiz.length)}
+          onReview={review}
         />
-        <Objectives items={lesson.objectives} reached={Math.max(maxSeen, index)} />
-      </aside>
-    </div>
+      </div>
+    </>
   );
 }

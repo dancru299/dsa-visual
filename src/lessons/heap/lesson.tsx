@@ -12,6 +12,7 @@ import {
   type HeapState,
 } from './algorithm';
 import { heapScene } from './scenes';
+import { QUIZ } from './quiz';
 
 // ---------- Code hiển thị trên trang ----------
 
@@ -693,4 +694,5 @@ export const heapLesson: Lesson = {
     { text: 'Tìm Top-K bằng min-heap k phần tử', step: 3 },
     { text: 'Trộn k dãy đã sort bằng heap', step: 4 },
   ],
+  quiz: QUIZ,
 };
