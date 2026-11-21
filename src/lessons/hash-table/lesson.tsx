@@ -11,6 +11,7 @@ import {
   type HashState,
 } from './algorithm';
 import { hashScene } from './scenes';
+import { QUIZ } from './quiz';
 
 // ---------- Code hiển thị trên trang ----------
 
@@ -560,4 +561,5 @@ export const hashTableLesson: Lesson = {
     { text: 'Nối hash table với GROUP BY và hash join', step: 4 },
     { text: 'Nhận ra hash lệch và data skew', step: 5 },
   ],
+  quiz: QUIZ,
 };

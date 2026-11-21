@@ -61,6 +61,45 @@ for (const lesson of BUILT_LESSONS) {
       expect(errors).toEqual([]);
     });
 
+    test('làm quiz cuối bài, xem lại bước gợi ý, điểm còn sau khi tải lại', async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      const errors = collectErrors(page);
+      await page.goto(lessonHref(lesson.slug));
+      const quiz = page.getByTestId('quiz');
+      const questions = quiz.getByTestId('quiz-question');
+      const n = await questions.count();
+      expect(n).toBeGreaterThanOrEqual(3);
+
+      // Chọn đáp án hiện đầu tiên của mỗi câu; chọn xong thì câu đó khoá lại.
+      for (let i = 0; i < n; i++) {
+        const choices = questions.nth(i).getByTestId('quiz-choice');
+        await choices.first().click();
+        await expect(choices.first()).toBeDisabled();
+      }
+      await expect(quiz.getByTestId('quiz-result')).toContainText(`trên ${n} câu`);
+      const chip = page.getByTestId('quiz-chip');
+      await expect(chip).toHaveText(new RegExp(`Quiz \\d+/${n}`));
+      const saved = (await chip.textContent())!;
+
+      // Câu sai có nút đưa về đúng bước cần xem lại.
+      const review = quiz.getByTestId('quiz-review').first();
+      if (await review.isVisible()) {
+        const label = (await review.textContent())!;
+        const step = Number(label.match(/bước (\d+)/)![1]);
+        await review.click();
+        await expect(page.getByTestId('step-counter')).toHaveText(new RegExp(`^BƯỚC ${step} /`));
+      }
+
+      // Làm lại: mọi câu mở khoá, điểm cũ vẫn giữ.
+      await quiz.getByTestId('quiz-retry').click();
+      await expect(questions.first().getByTestId('quiz-choice').first()).toBeEnabled();
+      await expect(quiz.getByTestId('quiz-result')).toContainText(`0/${n}`);
+
+      await page.reload();
+      await expect(page.getByTestId('quiz-chip')).toHaveText(saved);
+      expect(errors).toEqual([]);
+    });
+
     test('link tới một bước mở đúng bước đó', async ({ page }) => {
       await page.goto(`${lessonHref(lesson.slug)}#buoc-2`);
       await expect(page.getByTestId('step-counter')).toHaveText(/^BƯỚC 2 \//);

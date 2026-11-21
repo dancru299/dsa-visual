@@ -15,6 +15,7 @@ import {
   type ShiftState,
 } from './algorithm';
 import { queueScene, ringScene, shiftScene } from './scenes';
+import { QUIZ } from './quiz';
 
 // ---------- Code hiển thị trên trang ----------
 
@@ -546,4 +547,5 @@ export const queueLesson: Lesson = {
     { text: 'Hiểu ring buffer quay vòng bằng % capacity', step: 3 },
     { text: 'Giải thích backpressure khi buffer đầy', step: 4 },
   ],
+  quiz: QUIZ,
 };
