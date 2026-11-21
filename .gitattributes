@@ -1,0 +1,7 @@
+# Giữ xuống dòng kiểu LF trên mọi máy. Git trên máy này đang bật core.autocrlf=true, nên nếu
+# thiếu file này, mỗi lần checkout sẽ đổi sang CRLF và `npm run format:check` sẽ báo lỗi.
+* text=auto eol=lf
+
+*.ico binary
+*.png binary
+*.jpg binary

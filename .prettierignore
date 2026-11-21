@@ -1,0 +1,16 @@
+.next/
+out/
+build/
+coverage/
+node_modules/
+package-lock.json
+next-env.d.ts
+test-results/
+playwright-report/
+blob-report/
+
+# Bản demo gốc giữ nguyên để làm tham chiếu khi chuyển sang engine mới.
+public/demo.html
+
+# File này do `next dev` tự sinh lại.
+AGENTS.md
