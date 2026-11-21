@@ -117,7 +117,16 @@ export const COURSE: ModuleMeta[] = [
     name: '05. Cây',
     color: '#bad5f2',
     lessons: [
-      { slug: 'heap', title: 'Heap', built: false },
+      {
+        slug: 'heap',
+        title: 'Heap và priority queue',
+        built: true,
+        minutes: 8,
+        level: 'Cơ bản',
+        summary:
+          'Một cái cây nằm gọn trong list: luôn biết ngay số nhỏ nhất, push và pop O(log n). Dùng để lấy Top-K trên dòng dữ liệu và trộn k file đã sort.',
+        prerequisites: ['Python: list và index', 'Bài Big-O và bài Merge sort'],
+      },
       { slug: 'binary-search-tree', title: 'Binary Search Tree', built: false },
       { slug: 'b-tree', title: 'B-tree', built: false },
     ],
