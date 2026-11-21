@@ -1,0 +1,241 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 4px;
+}
+
+.main {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 10px 12px;
+  min-width: 0;
+}
+
+.head {
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+  margin: 0 0 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* ---------- máy hash ---------- */
+
+.probe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.probeKey {
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-weight: 800;
+  background: var(--sun);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.arrow {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.calc {
+  white-space: nowrap;
+}
+
+.bucketNo {
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-weight: 800;
+  background: var(--sky);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.probeEmpty {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* ---------- các ngăn ---------- */
+
+.tables {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tables > .card {
+  flex: 1 1 240px;
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 2px 4px;
+  border-radius: 8px;
+  transition: background 0.25s;
+}
+
+.row.probed {
+  background: var(--sun-t);
+}
+
+.row.missed {
+  background: var(--rose-t);
+}
+
+.idx {
+  flex: none;
+  width: 30px;
+  height: 26px;
+  border: 2px solid var(--ink);
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  background: var(--paper);
+}
+
+.chain {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  min-height: 26px;
+}
+
+.chain:empty::before {
+  content: '·';
+  color: var(--muted);
+  padding-left: 4px;
+}
+
+.link {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.entry {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 8px;
+  border: 2px solid var(--ink);
+  border-radius: 7px;
+  font-weight: 800;
+  font-size: 12px;
+  box-shadow: 2px 2px 0 var(--ink);
+  background: var(--lav-t);
+  transition:
+    background 0.25s,
+    transform 0.25s;
+}
+
+.entry small {
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.entry.cursor {
+  background: var(--sun);
+  transform: translateY(-2px);
+}
+
+.entry.hit {
+  background: var(--mint);
+}
+
+.say {
+  align-self: flex-start;
+  border: 2.5px solid var(--ink);
+  border-radius: 9px;
+  padding: 4px 12px;
+  font-weight: 800;
+  font-size: 12.5px;
+  box-shadow: 3px 3px 0 var(--ink);
+  background: var(--surface);
+  animation: popIn 0.4s cubic-bezier(0.3, 1.6, 0.6, 1);
+}
+
+.say.good {
+  background: var(--mint);
+}
+
+.say.bad {
+  background: var(--rose);
+}
+
+.sql {
+  margin: 0;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+.sql code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+.noAnim,
+.noAnim * {
+  transition: none !important;
+  animation: none !important;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}

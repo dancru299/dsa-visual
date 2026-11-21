@@ -1,8 +1,8 @@
 'use client';
 
-import { AnimatePresence, motion, MotionConfig, type Variants } from 'motion/react';
-import type { ReactNode } from 'react';
+import { AnimatePresence, motion, type Variants } from 'motion/react';
 import { CodeView } from '@/src/components/CodeView';
+import { Instant } from '@/src/components/Instant';
 import type { Frame, SceneComponent, SceneProps } from '@/src/engine/types';
 import { cx } from '@/src/lib/cx';
 import { tailOf, type Item, type QueueState, type RingState, type ShiftState } from './algorithm';
@@ -20,15 +20,6 @@ const laneVariants: Variants = {
       ? { x: -80, opacity: 0, transition: { duration: 0.45 } }
       : { opacity: 0, transition: { duration: 0 } },
 };
-
-// Khi không chạy hiệu ứng, mọi chuyển động của Motion (kể cả layout) kết thúc ngay.
-const Instant = ({ animate, children }: { animate: boolean; children: ReactNode }) => (
-  <MotionConfig
-    transition={animate ? { type: 'spring', stiffness: 320, damping: 28 } : { duration: 0 }}
-  >
-    {children}
-  </MotionConfig>
-);
 
 function Say({ frame }: { frame: Frame<unknown> }) {
   if (!frame.say) return null;
