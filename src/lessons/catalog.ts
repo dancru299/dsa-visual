@@ -137,7 +137,16 @@ export const COURSE: ModuleMeta[] = [
           'Cây mà mỗi node chia khoá thành bên nhỏ hơn và bên lớn hơn: tìm, chèn, duyệt theo thứ tự, truy vấn khoảng, và vì sao dữ liệu đến đã sort làm cây thành một chuỗi.',
         prerequisites: ['Bài Binary Search', 'Python: class, None và hàm đệ quy'],
       },
-      { slug: 'b-tree', title: 'B-tree', built: false },
+      {
+        slug: 'b-tree',
+        title: 'B-tree',
+        built: true,
+        minutes: 10,
+        level: 'Trung bình',
+        summary:
+          'Mỗi node chứa nhiều khoá và tách đôi khi đầy, nên cây luôn cân bằng và rất thấp. Đó là cấu trúc của index trong Postgres và MySQL.',
+        prerequisites: ['Bài Binary Search Tree', 'Bài Big-O: O(log n)'],
+      },
     ],
   },
   {
