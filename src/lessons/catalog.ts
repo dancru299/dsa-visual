@@ -174,7 +174,16 @@ export const COURSE: ModuleMeta[] = [
           'Xếp thứ tự chạy cho một DAG như dbt hay Airflow: bảng nào hết phải chờ thì chạy, đợt nào chạy song song được, và cách phát hiện vòng.',
         prerequisites: ['Python: dict, set và deque', 'Bài BFS và DFS'],
       },
-      { slug: 'union-find', title: 'Union-Find', built: false },
+      {
+        slug: 'union-find',
+        title: 'Union-Find',
+        built: true,
+        minutes: 9,
+        level: 'Cơ bản',
+        summary:
+          'Gom phần tử thành nhóm bằng một mảng parent: find đi lên tới gốc, union nối hai gốc. Hai mẹo nhỏ làm mọi thao tác gần như O(1), đủ để gộp hàng triệu bản ghi của cùng một khách hàng.',
+        prerequisites: ['Python: list và vòng lặp while', 'Bài BFS và DFS'],
+      },
     ],
   },
   {

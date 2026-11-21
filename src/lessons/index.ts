@@ -11,6 +11,7 @@ import { mergeSortLesson } from './merge-sort/lesson';
 import { queueLesson } from './queue/lesson';
 import { stackLesson } from './stack/lesson';
 import { topologicalSortLesson } from './topological-sort/lesson';
+import { unionFindLesson } from './union-find/lesson';
 
 // Nội dung chạy trên trình duyệt của các bài đã làm. Khớp với các bài built: true trong catalog.ts.
 export const LESSONS: Record<string, Lesson> = {
@@ -26,4 +27,5 @@ export const LESSONS: Record<string, Lesson> = {
   [bfsDfsLesson.slug]: bfsDfsLesson,
   [topologicalSortLesson.slug]: topologicalSortLesson,
   [bloomLesson.slug]: bloomLesson,
+  [unionFindLesson.slug]: unionFindLesson,
 };

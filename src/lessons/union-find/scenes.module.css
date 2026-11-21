@@ -1,0 +1,218 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 4px;
+}
+
+.main {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 10px 12px;
+  min-width: 0;
+}
+
+.treeCard {
+  padding: 10px 8px 12px;
+}
+
+.head {
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+  margin: 0 0 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+.edge {
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+
+.edge.edgeNew {
+  stroke: var(--sun-s);
+  stroke-width: 3.5;
+}
+
+.arrowHead {
+  fill: var(--ink);
+}
+
+.node {
+  fill: var(--lav-t);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  transition: fill 0.25s;
+}
+
+.node.isRoot {
+  fill: var(--mint);
+  stroke-width: 3.5;
+}
+
+.node.path {
+  fill: var(--sky-t);
+}
+
+.node.current {
+  fill: var(--sun);
+}
+
+.node.changed {
+  fill: var(--peach);
+}
+
+.pairRing {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.label {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 800;
+  fill: var(--ink);
+}
+
+/* ---------- mảng parent ---------- */
+
+.arrayHead {
+  margin: 10px 2px 4px;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.array {
+  display: grid;
+  gap: 3px;
+}
+
+.cell {
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  display: grid;
+  text-align: center;
+  overflow: hidden;
+  transition: background 0.25s;
+}
+
+.cellIdx {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  border-bottom: 1.5px solid var(--line);
+  padding: 1px 0;
+}
+
+.cellVal {
+  font-size: 12.5px;
+  font-weight: 800;
+  padding: 3px 0;
+}
+
+.cell.cellRoot {
+  background: var(--mint-t);
+}
+
+.cell.cellCurrent {
+  background: var(--sun-t);
+}
+
+.cell.cellChanged {
+  background: var(--peach);
+}
+
+/* ---------- bảng bản ghi ---------- */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+
+.table td {
+  padding: 3px 4px;
+  border-bottom: 1px dashed var(--line);
+  overflow-wrap: anywhere;
+}
+
+.table tr.rowOn td {
+  background: var(--sun-t);
+}
+
+.say {
+  align-self: flex-start;
+  border: 2.5px solid var(--ink);
+  border-radius: 9px;
+  padding: 4px 12px;
+  font-weight: 800;
+  font-size: 12.5px;
+  box-shadow: 3px 3px 0 var(--ink);
+  background: var(--surface);
+  animation: popIn 0.4s cubic-bezier(0.3, 1.6, 0.6, 1);
+}
+
+.say.good {
+  background: var(--mint);
+}
+
+.say.bad {
+  background: var(--rose-t);
+}
+
+.noAnim,
+.noAnim * {
+  transition: none !important;
+  animation: none !important;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
