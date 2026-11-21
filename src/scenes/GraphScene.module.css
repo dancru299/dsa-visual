@@ -9,13 +9,46 @@
   padding-bottom: 4px;
 }
 
-/* Đồ thị chín node đọc không nổi khi thu nhỏ quá 560px, nên trên điện thoại kéo ngang.
-   Bài BFS/DFS ở Phase 2 cần một bố cục riêng cho màn hình hẹp. */
 .svg {
   display: block;
   width: 100%;
-  min-width: 560px;
   height: auto;
+}
+
+/* Đồ thị không có bố cục dọc thì đọc không nổi khi thu nhỏ quá 560px, nên kéo ngang. */
+.minWide {
+  min-width: 560px;
+}
+
+/* Có bố cục dọc: khung hẹp hơn 480px thì đổi sang nó. Rộng hơn thế, bố cục ngang
+   (khoảng 580 đơn vị) thu nhỏ không quá 80% nên vẫn đọc được. */
+.narrowOnly {
+  display: none;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+@container (max-width: 480px) {
+  .wideOnly {
+    display: none;
+  }
+
+  .narrowOnly {
+    display: block;
+  }
+}
+
+.badge circle {
+  fill: var(--surface);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.badge text {
+  font-family: var(--font);
+  font-size: 10px;
+  font-weight: 800;
+  fill: var(--ink);
 }
 
 .edge {
@@ -143,6 +176,10 @@
 
 .say.good {
   background: var(--mint);
+}
+
+.say.bad {
+  background: var(--rose-t);
 }
 
 .noAnim,

@@ -136,7 +136,16 @@ export const COURSE: ModuleMeta[] = [
     name: '06. Đồ thị',
     color: '#f6d77b',
     lessons: [
-      { slug: 'bfs-dfs', title: 'BFS và DFS', built: false },
+      {
+        slug: 'bfs-dfs',
+        title: 'BFS và DFS',
+        built: true,
+        minutes: 9,
+        level: 'Cơ bản',
+        summary:
+          'Lineage của dbt là một đồ thị. BFS lan ra từng lớp để tìm bảng bị ảnh hưởng, DFS đi sâu rồi quay lui; cả hai cần tập seen để không làm lại việc.',
+        prerequisites: ['Python: dict, list, set và hàm đệ quy', 'Bài Stack và bài Queue'],
+      },
       { slug: 'topological-sort', title: 'Topological sort', built: false },
       { slug: 'union-find', title: 'Union-Find', built: false },
     ],
