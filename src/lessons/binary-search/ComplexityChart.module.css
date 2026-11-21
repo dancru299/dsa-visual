@@ -1,0 +1,100 @@
+.card {
+  width: 262px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 10px 12px;
+}
+
+.head {
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+}
+
+.card svg {
+  display: block;
+}
+
+.card text {
+  font-family: var(--font);
+}
+
+.g {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.ax {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.mk {
+  stroke: var(--muted);
+  stroke-dasharray: 3 3;
+}
+
+.tl {
+  font-size: 8.5px;
+  fill: var(--muted);
+}
+
+.cLin {
+  fill: none;
+  stroke: var(--bad);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.cLog {
+  fill: none;
+  stroke: var(--good);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.dLin {
+  fill: var(--rose);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.dLog {
+  fill: var(--mint);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+
+.vl {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.nm {
+  font-size: 9px;
+  font-weight: 700;
+}
+
+text.lin {
+  fill: var(--bad);
+}
+
+text.log {
+  fill: var(--good);
+}
+
+.lin,
+.log {
+  transition: opacity 0.3s;
+}
+
+.card[data-hl='lin'] .log,
+.card[data-hl='log'] .lin {
+  opacity: 0.18;
+}

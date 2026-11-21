@@ -1,27 +1,17 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import { collectErrors } from './helpers';
 
-// Gom lỗi console và lỗi JavaScript chưa được bắt trong lúc trang chạy.
-function collectErrors(page: Page): string[] {
-  const errors: string[] = [];
-  page.on('console', (msg) => {
-    if (msg.type() === 'error') errors.push(msg.text());
-  });
-  page.on('pageerror', (err) => errors.push(err.message));
-  return errors;
-}
-
-test('trang chủ mở được và không có lỗi console', async ({ page }) => {
+test('trang chủ mở được, có link vào bài đầu tiên, không lỗi console', async ({ page }) => {
   const errors = collectErrors(page);
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('DSA Visual');
-  await expect(page.getByRole('link', { name: 'bản demo đầu tiên' })).toHaveAttribute(
-    'href',
-    '/demo.html',
-  );
+  await page.getByRole('link', { name: /Bắt đầu với Binary Search/ }).click();
+  await expect(page).toHaveURL(/\/learn\/binary-search/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Binary Search');
   expect(errors).toEqual([]);
 });
 
-test('bản demo mở được và chuyển được sang bước 2', async ({ page }) => {
+test('bản demo cũ vẫn mở được và chuyển được sang bước 2', async ({ page }) => {
   const errors = collectErrors(page);
   await page.goto('/demo.html');
   await expect(page.locator('#lTitle')).toHaveText('Binary Search');

@@ -1,7 +1,7 @@
 .main {
-  max-width: 640px;
+  max-width: 880px;
   margin: 0 auto;
-  padding: 72px 16px;
+  padding: 56px 16px 72px;
 }
 
 .title {
@@ -17,23 +17,68 @@
 }
 
 .lead {
-  margin: 0 0 24px;
-  font-size: 17px;
+  margin: 0 0 20px;
+  font-size: 16px;
+  max-width: 60ch;
 }
 
-.card {
+.cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.module {
   background: var(--surface);
   border: 1.5px solid var(--line);
   border-radius: 14px;
-  padding: 16px 18px;
-  color: var(--muted);
+  padding: 14px 16px;
 }
 
-.card p {
+.module h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font-size: 13.5px;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  flex: none;
+}
+
+.module ul {
+  list-style: none;
   margin: 0;
+  padding: 0;
 }
 
-.card a {
-  color: var(--ink);
+.module li {
+  margin: 4px 0;
+  font-size: 12.5px;
+}
+
+.module a {
   font-weight: 700;
+}
+
+.soon {
+  color: var(--muted);
 }
