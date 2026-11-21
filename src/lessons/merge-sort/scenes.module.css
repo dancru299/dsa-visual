@@ -1,0 +1,356 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 4px;
+}
+
+.main {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 10px 12px;
+  min-width: 0;
+}
+
+.head {
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+  margin: 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* ---------- cây theo tầng ---------- */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  --cell: 34px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+.group {
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  border: 2px solid var(--line);
+  border-radius: 9px;
+  background: var(--paper);
+  transition:
+    border-color 0.25s,
+    background 0.25s;
+}
+
+.group.target {
+  border-color: var(--ink);
+  background: var(--sun-t);
+}
+
+.group.source {
+  border-color: var(--ink);
+  border-style: dashed;
+}
+
+.cell {
+  width: var(--cell);
+  height: var(--cell);
+  border: 2px solid var(--ink);
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  background: var(--lav-t);
+  transition:
+    background 0.25s,
+    opacity 0.25s,
+    transform 0.25s;
+}
+
+.cell.empty {
+  background: var(--surface);
+  border-style: dashed;
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+.cell.consumed {
+  opacity: 0.35;
+}
+
+.cell.pointer {
+  background: var(--sun);
+  transform: translateY(-3px);
+}
+
+.cell.newest {
+  background: var(--mint);
+  animation: popIn 0.35s cubic-bezier(0.3, 1.6, 0.6, 1);
+}
+
+.cell.sorted {
+  background: var(--mint-t);
+}
+
+/* ---------- merge join ---------- */
+
+.lane {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.laneLabel {
+  flex: none;
+  width: 118px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.laneCells {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.laneCell {
+  position: relative;
+  width: 38px;
+  height: 36px;
+  border: 2px solid var(--ink);
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: var(--surface);
+  margin-bottom: 16px;
+  transition:
+    background 0.25s,
+    opacity 0.25s;
+}
+
+.laneCell.done {
+  opacity: 0.35;
+}
+
+.laneCell.matched {
+  background: var(--mint);
+  opacity: 1;
+}
+
+.laneCell.here {
+  background: var(--sun);
+  opacity: 1;
+}
+
+.ptr {
+  position: absolute;
+  bottom: -17px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.pairs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-height: 28px;
+  align-items: center;
+}
+
+.pairs:empty::before {
+  content: '(chưa có cặp nào)';
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+.pair {
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 1px 8px;
+  font-weight: 700;
+  font-size: 12px;
+  background: var(--mint-t);
+  box-shadow: 2px 2px 0 var(--ink);
+  animation: popIn 0.35s cubic-bezier(0.3, 1.6, 0.6, 1);
+}
+
+/* ---------- bảng chi phí ---------- */
+
+.scroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: 13px;
+}
+
+.table th {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-align: right;
+  padding: 4px 8px 6px;
+  border-bottom: 1.5px solid var(--line);
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 9px 8px;
+  text-align: right;
+  border-bottom: 1px dashed var(--line);
+  white-space: nowrap;
+  opacity: 0.15;
+  transition: opacity 0.3s;
+}
+
+.table th:first-child,
+.table td:first-child {
+  text-align: left;
+}
+
+.table tr.shown td {
+  opacity: 1;
+}
+
+.table tr.latest td {
+  background: var(--sun-t);
+}
+
+.good {
+  color: var(--good);
+  font-weight: 800;
+}
+
+.bad {
+  color: var(--bad);
+  font-weight: 800;
+}
+
+.note {
+  margin: 10px 0 0;
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.say {
+  align-self: flex-start;
+  border: 2.5px solid var(--ink);
+  border-radius: 9px;
+  padding: 4px 12px;
+  font-weight: 800;
+  font-size: 12.5px;
+  box-shadow: 3px 3px 0 var(--ink);
+  background: var(--surface);
+  animation: popIn 0.4s cubic-bezier(0.3, 1.6, 0.6, 1);
+}
+
+.say.good {
+  background: var(--mint);
+  color: inherit;
+}
+
+.noAnim,
+.noAnim * {
+  transition: none !important;
+  animation: none !important;
+}
+
+@container (max-width: 520px) {
+  /* 8 ô ở tầng dưới cùng phải vừa khoảng 220px. */
+  .rows {
+    --cell: 23px;
+    overflow-x: auto;
+  }
+
+  .row {
+    gap: 3px;
+  }
+
+  .group {
+    padding: 1px;
+    border-width: 1.5px;
+  }
+
+  /* Nhóm 1 phần tử không cần khung riêng: chính ô đã là nhóm. */
+  .group.single {
+    padding: 0;
+    border-color: transparent;
+    background: transparent;
+  }
+
+  .cell {
+    font-size: 10.5px;
+    border-width: 1.5px;
+    border-radius: 5px;
+  }
+
+  .laneLabel {
+    width: 86px;
+  }
+
+  .laneCell {
+    width: 32px;
+  }
+
+  .table th:nth-child(4),
+  .table td:nth-child(4),
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+    display: none;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
