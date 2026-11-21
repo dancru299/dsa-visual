@@ -146,7 +146,16 @@ export const COURSE: ModuleMeta[] = [
           'Lineage của dbt là một đồ thị. BFS lan ra từng lớp để tìm bảng bị ảnh hưởng, DFS đi sâu rồi quay lui; cả hai cần tập seen để không làm lại việc.',
         prerequisites: ['Python: dict, list, set và hàm đệ quy', 'Bài Stack và bài Queue'],
       },
-      { slug: 'topological-sort', title: 'Topological sort', built: false },
+      {
+        slug: 'topological-sort',
+        title: 'Topological sort',
+        built: true,
+        minutes: 9,
+        level: 'Cơ bản',
+        summary:
+          'Xếp thứ tự chạy cho một DAG như dbt hay Airflow: bảng nào hết phải chờ thì chạy, đợt nào chạy song song được, và cách phát hiện vòng.',
+        prerequisites: ['Python: dict, set và deque', 'Bài BFS và DFS'],
+      },
       { slug: 'union-find', title: 'Union-Find', built: false },
     ],
   },

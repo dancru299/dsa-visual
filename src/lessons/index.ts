@@ -7,6 +7,7 @@ import { heapLesson } from './heap/lesson';
 import { mergeSortLesson } from './merge-sort/lesson';
 import { queueLesson } from './queue/lesson';
 import { stackLesson } from './stack/lesson';
+import { topologicalSortLesson } from './topological-sort/lesson';
 
 // Nội dung chạy trên trình duyệt của các bài đã làm. Khớp với các bài built: true trong catalog.ts.
 export const LESSONS: Record<string, Lesson> = {
@@ -18,4 +19,5 @@ export const LESSONS: Record<string, Lesson> = {
   [mergeSortLesson.slug]: mergeSortLesson,
   [heapLesson.slug]: heapLesson,
   [bfsDfsLesson.slug]: bfsDfsLesson,
+  [topologicalSortLesson.slug]: topologicalSortLesson,
 };

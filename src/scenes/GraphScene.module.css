@@ -21,8 +21,10 @@
 }
 
 /* Có bố cục dọc: khung hẹp hơn 480px thì đổi sang nó. Rộng hơn thế, bố cục ngang
-   (khoảng 580 đơn vị) thu nhỏ không quá 80% nên vẫn đọc được. */
-.narrowOnly {
+   (khoảng 580 đơn vị) thu nhỏ không quá 80% nên vẫn đọc được. Bố cục ngang khoảng 830 đơn
+   vị thì dùng bộ Lg, đổi ở 720px. Container query không nhận biến, nên mỗi mốc một bộ class. */
+.narrowOnly,
+.narrowOnlyLg {
   display: none;
   max-width: 420px;
   margin: 0 auto;
@@ -34,6 +36,16 @@
   }
 
   .narrowOnly {
+    display: block;
+  }
+}
+
+@container (max-width: 720px) {
+  .wideOnlyLg {
+    display: none;
+  }
+
+  .narrowOnlyLg {
     display: block;
   }
 }
