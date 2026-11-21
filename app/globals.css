@@ -1,14 +1,5 @@
-/* Phase 0 chỉ cần vài màu nền. Phase 1 sẽ chép đủ token từ :root của bản demo sang src/styles/tokens.css. */
-:root {
-  --paper: #f4efe4;
-  --surface: #fffcf6;
-  --ink: #211d2c;
-  --muted: #6b6577;
-  --line: #e2d9c8;
-  --mint: #bde3b1;
-  color-scheme: light;
-}
-
+/* Style nền cho mọi trang. Token màu nằm trong src/styles/tokens.css; style của từng khối nằm
+   trong file .module.css cạnh component đó. */
 * {
   box-sizing: border-box;
 }
@@ -22,9 +13,20 @@ body {
   min-height: 100vh;
   background: var(--paper);
   color: var(--ink);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font);
+  font-size: 13px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  /* JetBrains Mono gộp <= thành ≤, == thành một ký tự dài. Người học cần thấy đúng ký tự
+     sẽ gõ, nên tắt gộp ký tự trên toàn trang. */
+  font-variant-ligatures: none;
+}
+
+button,
+select,
+input {
+  font: inherit;
+  color: inherit;
 }
 
 a {
@@ -34,4 +36,32 @@ a {
 :focus-visible {
   outline: 2.5px solid var(--ink);
   outline-offset: 2px;
+}
+
+code {
+  font-family: var(--font);
+  background: var(--sun-t);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 4px;
+  font-size: 0.94em;
+  /* Câu SQL dài trong đoạn văn được xuống dòng thay vì tràn khỏi thẻ. */
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
 }

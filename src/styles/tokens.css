@@ -1,0 +1,39 @@
+/* Chép từ :root của bản demo (public/demo.html). Phong cách: neo-brutalism mềm, viền mực,
+   bóng cứng lệch, màu pastel phẳng, font monospace. Sửa token ở đây thay vì sửa từng component. */
+:root {
+  --paper: #f4efe4;
+  --surface: #fffcf6;
+  --ink: #211d2c;
+  --muted: #6b6577;
+  --line: #e2d9c8;
+  --grid: rgba(120, 100, 70, 0.1);
+
+  --lav: #cdc2ec;
+  --lav-t: #e6e0f7;
+  --lav-s: #a393d8;
+  --mint: #bde3b1;
+  --mint-t: #dcf0d4;
+  --mint-s: #8cc47e;
+  --sun: #f6d77b;
+  --sun-t: #fcecb8;
+  --sun-s: #deb043;
+  --rose: #f4b8b0;
+  --rose-t: #fbdcd8;
+  --rose-s: #e08a80;
+  --sky: #bad5f2;
+  --sky-t: #dce9f9;
+  --sky-s: #88b1df;
+  --peach: #f7c696;
+  --peach-t: #fde2c8;
+  --peach-s: #e3a061;
+  --ash: #dfd9ce;
+  --ash-t: #eeeae3;
+  --ash-s: #c3bcae;
+
+  --bad: #c0443a;
+  --good: #2f7a2c;
+  --font: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --hard: 3px 3px 0 var(--ink);
+  --top-h: 58px;
+  color-scheme: light;
+}

@@ -1,0 +1,64 @@
+.metrics {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  min-height: 52px;
+}
+
+.metric {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-left: 4px solid var(--ink);
+  border-radius: 8px;
+  padding: 5px 12px 6px;
+  min-width: 108px;
+}
+
+.ml {
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.mv {
+  font-size: 17px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+  white-space: nowrap;
+  border-radius: 4px;
+}
+
+.bad {
+  border-left-color: var(--bad);
+}
+
+.bad .mv {
+  color: var(--bad);
+}
+
+.good {
+  border-left-color: var(--good);
+}
+
+.good .mv {
+  color: var(--good);
+}
+
+.flash {
+  animation: flash 0.7s ease;
+}
+
+@keyframes flash {
+  0% {
+    background: var(--sun-t);
+    transform: translateY(-2px);
+  }
+  100% {
+    background: transparent;
+    transform: none;
+  }
+}

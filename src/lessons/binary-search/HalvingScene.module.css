@@ -1,0 +1,144 @@
+.root {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 8px 4px;
+}
+
+.head {
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.ladder {
+  flex: 1 1 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lrow {
+  display: grid;
+  grid-template-columns: 72px auto 1fr;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.18;
+  transition: opacity 0.3s;
+}
+
+.show {
+  opacity: 1;
+}
+
+.ll {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.sqs {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.sq {
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  background: var(--lav);
+  box-shadow: 2px 2px 0 var(--ink);
+  display: block;
+}
+
+.show .sq {
+  animation: sqIn 0.35s cubic-bezier(0.3, 1.6, 0.6, 1) both;
+  animation-delay: calc(var(--d) * 20ms);
+}
+
+.last .sq {
+  background: var(--mint);
+}
+
+.lc {
+  font-weight: 800;
+}
+
+.big {
+  flex: 0 1 300px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 10px 12px;
+}
+
+.big table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+}
+
+.big th {
+  font-size: 9.5px;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  text-align: right;
+  padding: 2px 6px 5px;
+  border-bottom: 1.5px solid var(--line);
+  text-transform: uppercase;
+}
+
+.big td {
+  padding: 6px;
+  text-align: right;
+  border-bottom: 1px dashed var(--line);
+  opacity: 0.15;
+  transition: opacity 0.3s;
+}
+
+.big th:first-child,
+.big td:first-child {
+  text-align: left;
+}
+
+.big tr.shown td {
+  opacity: 1;
+}
+
+.big td.lin {
+  color: var(--bad);
+}
+
+.big td.bin {
+  color: var(--good);
+  font-weight: 800;
+}
+
+.note {
+  margin: 8px 0 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.noAnim,
+.noAnim * {
+  transition: none !important;
+  animation: none !important;
+}
+
+@keyframes sqIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
