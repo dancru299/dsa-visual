@@ -181,7 +181,18 @@ export const COURSE: ModuleMeta[] = [
     id: 'xac-suat',
     name: '07. Xác suất',
     color: '#cdc2ec',
-    lessons: [{ slug: 'bloom-filter', title: 'Bloom filter', built: false }],
+    lessons: [
+      {
+        slug: 'bloom-filter',
+        title: 'Bloom filter',
+        built: true,
+        minutes: 9,
+        level: 'Cơ bản',
+        summary:
+          'Một mảng bit và vài hàm hash trả lời "chắc chắn không có" hoặc "có thể có". Parquet lưu nó trong từng row group để bỏ qua dữ liệu không cần đọc.',
+        prerequisites: ['Bài Hash table', 'Python: list và hàm'],
+      },
+    ],
   },
 ];
 

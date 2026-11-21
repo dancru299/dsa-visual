@@ -1,0 +1,333 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 4px;
+}
+
+.main {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.side {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 10px 12px;
+  min-width: 0;
+}
+
+.head {
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  font-weight: 800;
+  margin: 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px 8px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- phần tử đang xét ---------- */
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.itemName {
+  font-weight: 800;
+  font-size: 15px;
+  margin-right: 4px;
+}
+
+.hash {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-weight: 800;
+  background: var(--surface);
+  transition: background 0.2s;
+}
+
+.hash.hashOn {
+  background: var(--sun);
+}
+
+/* ---------- mảng bit ---------- */
+
+.bits {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.bit {
+  display: grid;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  gap: 2px;
+}
+
+.val {
+  width: 100%;
+  aspect-ratio: 1;
+  max-width: 34px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 13px;
+  background: var(--surface);
+  color: var(--muted);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.bit.on .val {
+  background: var(--sky-t);
+  color: var(--ink);
+}
+
+.bit.target .val {
+  box-shadow: 0 0 0 3px var(--sun-s);
+}
+
+.bit.probe .val {
+  background: var(--sun);
+  color: var(--ink);
+}
+
+.bit.cleared .val {
+  background: var(--rose-t);
+}
+
+.idx {
+  font-size: 9.5px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.verdictRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.verdict {
+  border: 2.5px solid var(--ink);
+  border-radius: 9px;
+  padding: 3px 10px;
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.verdict.absent {
+  background: var(--mint);
+}
+
+.verdict.maybe {
+  background: var(--sun);
+}
+
+.note {
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.note.noteBad {
+  color: var(--rose-s);
+}
+
+/* ---------- row group ---------- */
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.group {
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition:
+    opacity 0.25s,
+    background 0.25s;
+}
+
+.group.groupOn {
+  background: var(--sun-t);
+}
+
+.group.skipped {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.groupHead {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.mini {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.miniBit {
+  aspect-ratio: 1;
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  background: var(--surface);
+}
+
+.miniBit.on {
+  background: var(--sky);
+}
+
+.miniBit.target {
+  outline: 2px solid var(--sun-s);
+  outline-offset: 1px;
+}
+
+.miniBit.zero {
+  background: var(--rose-t);
+}
+
+.groupFoot {
+  font-size: 11.5px;
+  font-weight: 800;
+  min-height: 18px;
+}
+
+.tagSkip {
+  color: var(--muted);
+}
+
+.tagRead {
+  color: var(--ink);
+}
+
+.tagHit {
+  color: var(--ink);
+  background: var(--mint);
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+
+.tagMiss {
+  background: var(--rose-t);
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+
+/* ---------- chung ---------- */
+
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-height: 28px;
+  align-items: center;
+}
+
+.chips:empty::before {
+  content: '(trống)';
+  color: var(--muted);
+  font-size: 11.5px;
+}
+
+.chip {
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 1px 9px;
+  font-weight: 800;
+  font-size: 12.5px;
+  background: var(--lav-t);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.say {
+  align-self: flex-start;
+  border: 2.5px solid var(--ink);
+  border-radius: 9px;
+  padding: 4px 12px;
+  font-weight: 800;
+  font-size: 12.5px;
+  box-shadow: 3px 3px 0 var(--ink);
+  background: var(--surface);
+  animation: popIn 0.4s cubic-bezier(0.3, 1.6, 0.6, 1);
+}
+
+.say.good {
+  background: var(--mint);
+}
+
+.say.bad {
+  background: var(--rose-t);
+}
+
+.noAnim,
+.noAnim * {
+  transition: none !important;
+  animation: none !important;
+}
+
+@container (max-width: 520px) {
+  .bits {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .groups {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}

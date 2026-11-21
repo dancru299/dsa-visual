@@ -3,6 +3,7 @@ import { bigOLesson } from './big-o/lesson';
 import { bstLesson } from './binary-search-tree/lesson';
 import { bfsDfsLesson } from './bfs-dfs/lesson';
 import { binarySearchLesson } from './binary-search/lesson';
+import { bloomLesson } from './bloom-filter/lesson';
 import { btreeLesson } from './b-tree/lesson';
 import { hashTableLesson } from './hash-table/lesson';
 import { heapLesson } from './heap/lesson';
@@ -24,4 +25,5 @@ export const LESSONS: Record<string, Lesson> = {
   [btreeLesson.slug]: btreeLesson,
   [bfsDfsLesson.slug]: bfsDfsLesson,
   [topologicalSortLesson.slug]: topologicalSortLesson,
+  [bloomLesson.slug]: bloomLesson,
 };
